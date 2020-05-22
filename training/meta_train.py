@@ -106,17 +106,15 @@ def multi_task_learning(args, common_dir, tx_net,rx_net, writer_meta_training, N
             first_loss_tx = first_loss_tx + first_loss_curr_tx
             second_loss_tx = second_loss_tx + second_loss_curr_tx
         first_loss_tx = first_loss_tx / args.tasks_per_metaupdate
-        second_loss_tx = second_loss_tx / args.tasks_per_metaupdate
+        second_loss_tx = second_loss_tx / args.tasks_per_metaupdate # we joint train tx so we only have one loss (which means, first_loss_tx = second_loss_tx)
         first_loss_rx = first_loss_rx / args.tasks_per_metaupdate
         second_loss_rx = second_loss_rx / args.tasks_per_metaupdate
         if args.if_TB_loss_ignore:
             pass
         else:
-            writer_meta_training.add_scalar('first rx loss', first_loss_rx, epochs)
-            writer_meta_training.add_scalar('first tx loss', first_loss_tx, epochs)
-            writer_meta_training.add_scalar('second rx loss', second_loss_rx, epochs)
-            writer_meta_training.add_scalar('second tx loss', second_loss_tx, epochs)
-
+            writer_meta_training.add_scalar('RX loss before local adaptation', first_loss_rx, epochs)
+            writer_meta_training.add_scalar('RX loss after local adaptation', second_loss_rx, epochs)
+            writer_meta_training.add_scalar('TX loss', first_loss_tx, epochs)
         if args.if_use_stopping_criteria_during_meta_training:
             if second_loss_rx < second_loss_rx_best_for_stopping_criteria:
                 curr_path_rx_best_training_loss = PATH_before_adapt_rx_intermediate + 'best_model_based_on_meta_training_loss'
