@@ -117,7 +117,7 @@ def test_with_adapt_compact_during_online_meta_training(args, common_dir, curr_m
     # reset again # to make fair comp. per adapt. and per meta-training epochs
     if args.if_fix_random_seed:
         reset_randomness(args.random_seed + 2)
-    print('curr pilots test: ', num_pilots_test)
+    print('curr pilots used for test during online (meta-)learning: ', num_pilots_test)
 
     os.makedirs(common_dir + 'saved_model/' + 'with_meta_training_epoch/' + str(
         curr_meta_training_epoch) + '/' + 'tx/' + 'after_adapt/' + str(num_pilots_test) + '_num_pilots_test/')

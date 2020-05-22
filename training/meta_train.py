@@ -33,7 +33,7 @@ def multi_task_learning(args, common_dir, tx_net,rx_net, writer_meta_training, N
             curr_path_tx = PATH_before_adapt_tx_intermediate + str(epochs)
             torch.save(rx_net.state_dict(), curr_path_rx)
             torch.save(tx_net.state_dict(), curr_path_tx)
-            print('stochactic meta-learning epoch', epochs)
+            print('meta-learning epoch', epochs)
             if args.see_test_bler_during_meta_update:
                 # see test bler here
                 test_snr_range = [args.Eb_over_N_db_test]

@@ -1,1 +1,0 @@
-python ../../main.py --num_epochs_meta_train 10000 --lr_meta_update 0.01 --num_meta_local_updates 1 --lr_meta_inner 0.1 --lr_testtraining 0.001 --rho 0.5 --if_joint_training_tx_meta_training_rx --if_realistic_scenario --path_for_common_dir 'impl/meta/rho_0_5/'

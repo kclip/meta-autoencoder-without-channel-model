@@ -30,7 +30,7 @@ def test_training(args, h, tx_net_for_testtraining, rx_net_for_testtraining, Noi
                 rx_net_for_testtraining,
                 rx_testtraining_optimiser,
                 num_pilots_test_in_one_mb)
-        elif args.if_joint_training_tx_meta_training_rx:
+        elif args.if_fix_nn_tx_train_nn_rx_during_runtime:
             rx_testtraining_optimiser, loss_curr_rx, loss_curr_tx = one_frame_conventional_training_tx_nn_rx_nn(
                 args, h, Noise, Noise_relax, tx_net_for_testtraining,
                 rx_net_for_testtraining, rx_testtraining_optimiser,

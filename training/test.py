@@ -40,7 +40,7 @@ def test_per_channel_per_snr(args, test_size, h, tx_net_for_testtraining, rx_net
     # channel
     received_signal = channel(h, actual_transmitted_symbol, Noise_test, args.device, args.if_AWGN)
     # rx
-    out_test = rx_net_for_testtraining(received_signal, args.if_RTN, args.if_conv_transpose, args.device)
+    out_test = rx_net_for_testtraining(received_signal, args.if_RTN, args.device)
 
     for ind_mb in range(label_test.shape[0]):
         assert label_test.shape[0] == batch_size

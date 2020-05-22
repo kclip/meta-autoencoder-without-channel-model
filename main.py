@@ -7,10 +7,9 @@ import scipy.io as sio
 import datetime
 import numpy
 import os
+from torch.utils.tensorboard import SummaryWriter
 from utils.basic_funcs import reset_randomness
 from utils.test_bler_with_adaptation import test_with_adapt
-
-# check whether update working via github
 
 
 def parse_args():
@@ -28,7 +27,6 @@ def parse_args():
     parser.add_argument('--lr_testtraining', type=float, default=0.001, help='simple sgd')
     parser.add_argument('--lr_meta_update', type=float, default=0.01, help='lr for meta-update')
     parser.add_argument('--lr_meta_inner', type=float, default=0.1, help='lr for meta-inner')
-    parser.add_argument('--test_size', type=int, default=1000000, help='number of transmission blocks used to compute BLER after meta-training')
 
     parser.add_argument('--path_for_common_dir', dest='path_for_common_dir',
                         default='default_folder/default_subfolder/', type=str)
@@ -81,6 +79,8 @@ def parse_args():
 
     parser.add_argument('--test_size_during_meta_update', type=int, default=100000, help='number of transmission blocks used to compute BLER during meta-training')
 
+    parser.add_argument('--test_size', type=int, default=1000000, help='number of transmission blocks used to compute BLER after meta-training')
+
     parser.add_argument('--meta_tr_epoch_num_for_test', type=int, default=10000,
                         help='how often do we compute BLER of new channels during meta-training')
 
@@ -108,10 +108,17 @@ def parse_args():
     parser.add_argument('--fix_tx_multi_adapt_rx_iter_num', type=int, default=1,
                         help='number of adaptation at run time for reciever')
 
+    parser.add_argument('--if_fix_nn_tx_train_nn_rx_during_runtime', action='store_true',
+                        default=False,
+                        help='when we want to consider NN encoder to be fixed while NN decoder to be adapted during runtime')
+
     parser.add_argument('--fix_bpsk_tx_train_nn_rx_during_runtime', action='store_true',
                         default=False, help='when we want to consider BPSK encoder with NN decoder to be adapted during runtime')
     parser.add_argument('--fix_bpsk_tx', action='store_true',
                         default=False, help='when we want to (meta-)train NN decoder under BPSK encoder via online learning')
+    # basically, fix_bpsk_tx and fix_bpsk_tx_train_nn_rx_during_runtime would be used at the same time
+    # basically, if it is not the above case, then use if_fix_nn_tx_train_nn_rx_during_runtime and either if_joint_training or if_joint_training_tx_meta_training_rx (examples can be found in the 'run' folder)
+
     parser.add_argument('--if_exp_over_multi_pilots_test', action='store_true',
                         default=False, help='if we want to run experiments over varying number of pilots during test (during runtime, e.g., Fig. 4)')
 
