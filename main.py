@@ -77,11 +77,11 @@ def parse_args():
     parser.add_argument('--see_test_bler_during_meta_update', action='store_true',
                         default=False, help='whether to see BLER of new channels while meta-training (e.g., for Fig. 3)')
 
-    parser.add_argument('--test_size_during_meta_update', type=int, default=100000, help='number of transmission blocks used to compute BLER during meta-training')
+    parser.add_argument('--test_size_during_meta_update', type=int, default=1000, help='number of transmission blocks used to compute BLER during meta-training')
 
     parser.add_argument('--test_size', type=int, default=1000000, help='number of transmission blocks used to compute BLER after meta-training')
 
-    parser.add_argument('--meta_tr_epoch_num_for_test', type=int, default=10000,
+    parser.add_argument('--meta_tr_epoch_num_for_test', type=int, default=1000,
                         help='how often do we compute BLER of new channels during meta-training')
 
     parser.add_argument('--if_fully_random_no_fixed_seed_highest_priority', action='store_true',
