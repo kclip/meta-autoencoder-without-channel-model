@@ -10,6 +10,8 @@ import os
 from utils.basic_funcs import reset_randomness
 from utils.test_bler_with_adaptation import test_with_adapt
 
+# check whether update working via github
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description='end_to_end-meta')
