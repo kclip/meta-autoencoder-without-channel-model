@@ -5,8 +5,11 @@ def test_training(args, h, tx_net_for_testtraining, rx_net_for_testtraining, Noi
     # initialize network (net_for_testtraining) (net is for meta-training)
     if args.fix_bpsk_tx_train_nn_rx_during_runtime:
         pass
-    else:
+    elif args.if_fix_nn_tx_train_nn_rx_during_runtime:
         tx_net_for_testtraining.load_state_dict(torch.load(PATH_before_adapt_tx))
+    else: # should be either one of above two when we consider runtime
+        raise NotImplementedError
+
     rx_net_for_testtraining.load_state_dict(torch.load(PATH_before_adapt_rx))
 
     tx_testtraining_optimiser = None # since we do not have feedback link during runtime

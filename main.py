@@ -79,7 +79,7 @@ def parse_args():
 
     parser.add_argument('--test_size_during_meta_update', type=int, default=1000, help='number of transmission blocks used to compute BLER during meta-training')
 
-    parser.add_argument('--test_size', type=int, default=1000000, help='number of transmission blocks used to compute BLER after meta-training')
+    parser.add_argument('--test_size', type=int, default=100000, help='number of transmission blocks used to compute BLER after meta-training')
 
     parser.add_argument('--meta_tr_epoch_num_for_test', type=int, default=1000,
                         help='how often do we compute BLER of new channels during meta-training')

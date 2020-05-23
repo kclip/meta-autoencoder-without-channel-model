@@ -87,18 +87,10 @@ def test_with_adapt(args, common_dir, common_dir_over_multi_rand_seeds, test_snr
         if common_dir_over_multi_rand_seeds is not None:
             sio.savemat(test_result_all_PATH_per_rand_seeds, save_test_result_dict)
         else:
-            os.makedirs(common_dir + 'test_result/' + 'with_meta_training_epoch/' + str(meta_training_epochs) + '/')
             test_result_all_PATH = common_dir + 'test_result/' + 'with_meta_training_epoch/' + str(
                 meta_training_epochs) + '/' + 'test_result.mat'
 
             sio.savemat(test_result_all_PATH, save_test_result_dict)
-
-    if args.path_for_meta_trained_net_total_per_epoch:
-        save_test_result_dict_total[
-            'block_error_rate_total_total_meta_training_epoch'] = total_total_block_error_rate.detach().numpy()
-        sio.savemat(test_result_all_PATH_for_all_meta_training_epochs, save_test_result_dict_total)
-
-
 
 def test_with_adapt_compact_during_online_meta_training(args, common_dir, curr_meta_training_epoch, test_snr_range, num_pilots_test, tx_net_for_testtraining, rx_net_for_testtraining, Noise, Noise_relax, actual_channel_num, PATH_before_adapt_tx, PATH_before_adapt_rx):
     # generate or load test channels
