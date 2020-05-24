@@ -12,7 +12,3 @@ Tensorboard for pytorch is used for visualization (e.g., https://pytorch.org/doc
 ### Basic Usage under Rayleigh Block Fading channel case
     
 -  In the 'run/' folder, all the schemes in the paper can be trained via correlated channel model and tested with the same channels as done in the paper.
-
-### Preliminary codes are now deprecated
-    
--  Codes in the folder 'meta_rx_joint_tx/', which was preliminary version of the current code is now deprecated and will be erased soon.
